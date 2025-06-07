@@ -11,8 +11,8 @@ char* toUpperCase(char* src);
 int main(void){
     char * cp1, *cp2;
 
-    cp1 = toUpperCase("abc");
-    cp2 = toUpperCase("a1b2c3");
+    cp1 = toUpperCase("abcDeFGHijklmnopqrStuvwxyZ");
+    cp2 = toUpperCase("a1b2c3d44e5f66");
     printf("%s -> %s\n", "abc", cp1);
     printf("%s -> %s\n", "abc", cp2);;
 
@@ -21,7 +21,7 @@ int main(void){
     return 0;
 
 }
-char* UpperCase(char* src){
+char* toUpperCase(char* src){
     
     if(src==NULL)
         return 0;
@@ -29,13 +29,13 @@ char* UpperCase(char* src){
     char * pstr = (char*)malloc(len*sizeof(char));
     char * position = pstr;
 
-    while(*src){
-        if('a' <= *src && *src <= 'z')
-            *position++ = (*src++) + ('a' - 'A');
+    while(*src){    
+        if('a' <= *src && *src <= 'z')              // if small letter
+            *position++ = (*src++) - ('a' - 'A');   // 'a' = 97 'A'=65 . 97-65 = 32 = 'a' - 'A'
         else
             *position++ = *src++;
     }
-    *position = '\0';
+    *position = '\0';                   // add NULL cause char string
 
-    return pstr;
+    return pstr;                        // return starting pointer position
 }
