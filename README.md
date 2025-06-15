@@ -1,2 +1,3 @@
-C언어의 정석
-연습문제 풀이
+apt
+vmware 17.5 
+ubuntu
