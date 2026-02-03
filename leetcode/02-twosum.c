@@ -7,22 +7,6 @@
 #include <stdlib.h>
 #include <math.h>
 
-typedef struct n{
-    int data;
-    int * pNext;
-}Node;
-
-typedef struct ll{
-    int max;
-    Node * pNode;
-}sll;
-
-typedef struct stack{
-    int ptr;
-    int max;
-    int * pstack;
-}Stk;
-
 int Init_Stack(Stk *s, int n){
     s->pstack = (int*)calloc(n,sizeof(int));
     if(s->pstack == NULL){
@@ -67,9 +51,14 @@ int main(void){
     int * final_arr;
     int nDigit;
 
+//    int l1[]={2,4,3};
+//    int l1[] = {9,9,9,9,9,9,9,9};
+    int l1[] = {0};
 
-    int l1[] = {2,4,3};
-    int l2[] = {5,6,4};
+//    int l2[] = {5,6,4};
+    int l2[] = {0};
+//    int l2[] = {9,9,9,9};
+
     int one_size = sizeof(l1)/sizeof(l1[0]);
     int two_size = sizeof(l2)/sizeof(l2[0]);
     int total_size = one_size > two_size ? one_size: two_size;
@@ -102,8 +91,8 @@ int main(void){
         result += number;
         total_size--;
     }
-
-    nDigit = numbers_of_digits(result);
+    //3
+    nDigit = numbers_of_digits(result); // 자릿수가 몇인지 체크하는 함수
     final_arr = (int *)calloc(nDigit,sizeof(int));
     for(int i=0; i< nDigit; i++){
         int r = result % (int)(pow(10,1));
