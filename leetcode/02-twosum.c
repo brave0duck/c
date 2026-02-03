@@ -1,4 +1,6 @@
-/*   two sum ; single linked list - stack
+/*   two sum.
+    다양한 방법이 있겠지만 여기서는 스택을 이용해봄
+    로직
 *   1. 1배열 2배열을 차례로 스택에 넣는다
     2. 하나씩 꺼내서 숫자를 만들고 더하기로 최종수를 구함
     3. 최종수를 스택에 넣고 하나씩 꺼내 링크드 리스트로 완성
@@ -34,29 +36,30 @@ int Terminate(Stk *s){
     s->max=0;
     s->ptr;
 }
-int numbers_of_digits(int n){
+int numbers_of_digits(int n){   //숫자의 자릿수를 리턴 . 4828 = 4, 987 = 3
     if(n<0)
         return -1;
-    int result=0;
+    
     int count=1;
     while(1){
         if( 1 > (n / pow(10,count))){
-            return count;
+            break;
         }
         count++;
     }
+    return count;
 }
 int main(void){
     int result=0;    int data=0;
     int * final_arr;
     int nDigit;
 
-//    int l1[]={2,4,3};
+    int l1[]={2,4,3};
 //    int l1[] = {9,9,9,9,9,9,9,9};
-    int l1[] = {0};
+//    int l1[] = {0};
 
-//    int l2[] = {5,6,4};
-    int l2[] = {0};
+    int l2[] = {5,6,4};
+//    int l2[] = {0};
 //    int l2[] = {9,9,9,9};
 
     int one_size = sizeof(l1)/sizeof(l1[0]);
@@ -66,32 +69,35 @@ int main(void){
     Stk s1, s2, s3 ;
     Init_Stack(&s1,one_size);
     Init_Stack(&s2,two_size);
-    // 1
+
+    // 1. 1배열 2배열을 차례로 스택에 넣는다
     for(int i=0; i<one_size ; i++){
         Push_Stack(&s1,l1[i]);
     }
     for(int i=0; i<two_size ; i++){
         Push_Stack(&s2,l2[i]);
     }
-    // 2
-    while( total_size){
+
+    // 2. 하나씩 꺼내서 숫자를 만들고 더하기로 최종수를 구함
+    while( total_size){ //최대자릿수에서 시작
         int number=0;
-        if (total_size == s1.ptr){
+        if (total_size == s1.ptr){  //자릿수가 맞는지 확인
             data = Pop_Stack(&s1);
             if( data != -1)
                 number += data;
         }
-        if(total_size == s2.ptr){
+        if(total_size == s2.ptr){   // 자릿수가 맞는지 확인
             data = Pop_Stack(&s2);
             if( data != -1)
                 number += data;
         }
-        number *= pow(10,(total_size-1));
+        number *= pow(10,(total_size-1));   //더한수에 10을 몇번을 곱할지 정한다. 987 = 9*100 + 8*10 + 7*1
 
         result += number;
         total_size--;
     }
-    //3
+
+    //3.최종수를 배열에 넣고 하나씩 꺼내 출력
     nDigit = numbers_of_digits(result); // 자릿수가 몇인지 체크하는 함수
     final_arr = (int *)calloc(nDigit,sizeof(int));
     for(int i=0; i< nDigit; i++){
