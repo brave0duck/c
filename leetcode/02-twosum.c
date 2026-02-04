@@ -9,6 +9,12 @@
 #include <stdlib.h>
 #include <math.h>
 
+typedef struct{
+    int max;
+    int ptr;
+    int *pstack;
+}Stk;
+
 int Init_Stack(Stk *s, int n){
     s->pstack = (int*)calloc(n,sizeof(int));
     if(s->pstack == NULL){
@@ -91,7 +97,7 @@ int main(void){
             if( data != -1)
                 number += data;
         }
-        number *= pow(10,(total_size-1));   //더한수에 10을 몇번을 곱할지 정한다. 987 = 9*100 + 8*10 + 7*1
+        number *= pow(10,(total_size-1)); //더한수에 10을 몇번곱할지.987 = 9*100 + 8*10 + 7*1
 
         result += number;
         total_size--;
